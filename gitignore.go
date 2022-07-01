@@ -66,6 +66,30 @@ func NewGitIgnoreFromReader(path string, r io.Reader) IgnoreMatcher {
 	return g
 }
 
+func NewGitIgnoreFromSlice(patterns []string) IgnoreMatcher {
+	g := gitIgnore{
+		ignorePatterns: newIndexScanPatterns(),
+		acceptPatterns: newIndexScanPatterns(),
+		path:           "",
+	}
+	for _, p := range patterns {
+		line := strings.TrimSpace(p)
+		if len(line) == 0 || strings.HasPrefix(line, "#") {
+			continue
+		}
+		if strings.HasPrefix(line, `\#`) {
+			line = strings.TrimPrefix(line, `\`)
+		}
+
+		if strings.HasPrefix(line, "!") {
+			g.acceptPatterns.add(strings.TrimPrefix(line, "!"))
+		} else {
+			g.ignorePatterns.add(line)
+		}
+	}
+	return g
+}
+
 func (g gitIgnore) Match(path string, isDir bool) bool {
 	relativePath, err := filepath.Rel(g.path, path)
 	if err != nil {
