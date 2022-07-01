@@ -1,5 +1,7 @@
 # go-gitignore
 
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/neaas/go-gitignore?style=flat-square) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/neaas/go-gitignore?sort=semver&style=flat-square) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/neaas/go-gitignore/Unit%20Tests?label=tests&style=flat-square)
+
 A fast gitignore matching library for Go.
 
 This library use simple tree index for matching, so keep fast if gitignore file has many pattern.
