@@ -66,11 +66,16 @@ func NewGitIgnoreFromReader(path string, r io.Reader) IgnoreMatcher {
 	return g
 }
 
-func NewGitIgnoreFromSlice(patterns []string) IgnoreMatcher {
+func NewGitIgnoreFromSlice(patterns []string, base ...string) IgnoreMatcher {
 	g := gitIgnore{
 		ignorePatterns: newIndexScanPatterns(),
 		acceptPatterns: newIndexScanPatterns(),
 		path:           "",
+	}
+	if len(base) > 0 {
+		g.path = base[0]
+	} else {
+		g.path = "."
 	}
 	for _, p := range patterns {
 		line := strings.TrimSpace(p)

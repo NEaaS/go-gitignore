@@ -44,7 +44,7 @@ func TestMatch(t *testing.T) {
 	}
 
 	for _, assert := range asserts {
-		gi := NewGitIgnoreFromSlice(assert.patterns)
+		gi := NewGitIgnoreFromSlice(assert.patterns, ".")
 		result := gi.Match(assert.file.path, assert.file.isDir)
 		if result != assert.expect {
 			t.Errorf("Match should return %t, got %t on %v", assert.expect, result, assert)
