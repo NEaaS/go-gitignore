@@ -67,14 +67,13 @@ go-gitignore parse gitignore file, and generate a simple tree index for matching
 - Support directory pattern (path/to/directory/)
 - Support glob pattern (path/to/\*.txt)
 
-*note: glob pattern*
+> ⚠️ go-gitignore use [filepath.Match](https://golang.org/pkg/path/filepath/#Match) for matching meta char pattern, so does not support the doublestar recursive pattern (path/`**`/file).
 
-go-gitignore use [filepath.Match](https://golang.org/pkg/path/filepath/#Match) for matching meta char pattern, so not support recursive pattern (path/`**`/file).
 
 ## Installation
 
 ```sh
-$ go get github.com/monochromegane/go-gitignore
+$ go get github.com/neaas/go-gitignore
 ```
 
 ## Contribution
@@ -91,7 +90,7 @@ $ go get github.com/monochromegane/go-gitignore
 
 [MIT](https://github.com/monochromegane/go-gitignore/blob/master/LICENSE)
 
-## Author
+## Authors
 
-[monochromegane](https://github.com/monochromegane)
-
+- [monochromegane](https://github.com/monochromegane)
+- [will fantom](https://github.com/willfantom)
